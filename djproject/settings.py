@@ -29,7 +29,8 @@ sys.path.insert(0, os.path.join(BASE_DIR, 'extra_apps'))
 SECRET_KEY = 'c(qew^^w**&5li^(64)*p0j(c)nu8og@sjy4&im*pvi&4%^m9b'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
+
 
 ALLOWED_HOSTS = []
 
@@ -70,6 +71,7 @@ MIDDLEWARE = [
 ]
 
 CORS_ORIGIN_ALLOW_ALL = True
+ALLOWED_HOSTS = ['*']
 
 ROOT_URLCONF = 'djproject.urls'
 
