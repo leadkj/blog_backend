@@ -16,7 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
-from django.conf.urls.static import static
+# from django.conf.urls.static import static
+
+from django.conf.urls import url
+from django.views import static
 
 import xadmin
 from rest_framework_simplejwt.views import (
@@ -30,12 +33,15 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('xadmin/', xadmin.site.urls),
     path('ckeditor/', include('ckeditor_uploader.urls')),
-    path('api/v1/',include('blog.urls')),
+    path('api/v1/', include('blog.urls')),
     # path('^api-auth/', include('rest_framework.urls')),
     path('login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('token-refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    url(r'^static/(?P<path>.*)$', static.serve,
+        {'document_root': settings.STATIC_ROOT}, name='static'),
+
     #
 
 ]
 # if settings.DEBUG:
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+#     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
