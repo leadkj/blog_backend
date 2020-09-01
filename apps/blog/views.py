@@ -21,7 +21,7 @@ class StandardResultsSetPagination(PageNumberPagination):
 
 
 # 文章类视图
-class ArticleModelViewSets(CacheResponseMixin,ModelViewSet):
+class ArticleModelViewSets(CacheResponseMixin,ReadOnlyModelViewSet):
     '''文章类试图
       如果只是前端使用前后端分离方式开发，最好使用ReadOnlyModelViewSet ，我这里后台管理是xadmin,后端不是前后端分离技术
     '''
@@ -89,7 +89,7 @@ class ArticleModelViewSets(CacheResponseMixin,ModelViewSet):
         # 返回响应
         return Response(rdata, status=201)
 
-class CategoryModelViewSets(CacheResponseMixin,ModelViewSet):
+class CategoryModelViewSets(CacheResponseMixin,ReadOnlyModelViewSet):
     '''文章分类视图
     '''
     queryset = Category.objects.all()
@@ -98,7 +98,7 @@ class CategoryModelViewSets(CacheResponseMixin,ModelViewSet):
     pagination_class = StandardResultsSetPagination
 
 
-class TagModelViewSets(CacheResponseMixin,ModelViewSet):
+class TagModelViewSets(CacheResponseMixin,ReadOnlyModelViewSet):
     '''标签类视图
     '''
     queryset = Tag.objects.all()
