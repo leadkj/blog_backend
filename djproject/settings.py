@@ -50,7 +50,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'ckeditor',
     'ckeditor_uploader',
-    'rest_framework',
+    #'rest_framework',
     'django_filters',
     'corsheaders',
 
