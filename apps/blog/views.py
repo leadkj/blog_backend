@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from rest_framework.filters import OrderingFilter
 from rest_framework.pagination import PageNumberPagination
 
 from rest_framework.viewsets import ModelViewSet, ReadOnlyModelViewSet
@@ -27,6 +28,8 @@ class ArticleModelViewSets(CacheResponseMixin,ReadOnlyModelViewSet):
     '''
     queryset = Article.objects.all()
     serializer_class = ArticleModelSerializer
+    #排序
+    filter_backends = [OrderingFilter]
     # 局部过滤配置
     #filterset_fields = ['category', 'tag']
     #自定义过滤器
