@@ -28,14 +28,16 @@ class ArticleModelViewSets(CacheResponseMixin,ReadOnlyModelViewSet):
     '''
     queryset = Article.objects.all()
     serializer_class = ArticleModelSerializer
-    #排序
-    filter_backends = [OrderingFilter]
+
     # 局部过滤配置
     #filterset_fields = ['category', 'tag']
     #自定义过滤器
     filter_class = ArticleFilters
     search_fields = ['name','read','content']
 
+    # 排序 加上之后好像自定的过滤器有问题
+    # filter_backends = [OrderingFilter]
+    # ordering_fields = ['read','like']
     # 自定义分页
     pagination_class = StandardResultsSetPagination
 
