@@ -30,12 +30,12 @@ from rest_framework_simplejwt.views import (
 from blog import views as blogViews
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('xadmin/', xadmin.site.urls),
+    #path('admin/', admin.site.urls),
+    path('gun/', xadmin.site.urls),
     path('ckeditor/', include('ckeditor_uploader.urls')),
     path('api/v1/', include('blog.urls')),
     # path('^api-auth/', include('rest_framework.urls')),
-    path('login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('tauth/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('token-refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     url(r'^static/(?P<path>.*)$', static.serve,
         {'document_root': settings.STATIC_ROOT}, name='static'),
