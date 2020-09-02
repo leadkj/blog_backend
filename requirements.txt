@@ -12,6 +12,7 @@ django-redis==4.0.0
 djangorestframework==3.11.1
 djangorestframework-simplejwt==4.4.0
 drf-extensions==0.6.0
+dwebsocket==0.5.12
 et-xmlfile==1.0.1
 future==0.18.2
 httplib2==0.18.1
