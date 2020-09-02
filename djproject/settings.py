@@ -99,11 +99,11 @@ WSGI_APPLICATION = 'djproject.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'mydjango',
-        # 'USER': 'root',
-        # 'PASSWORD': 'picanoc1119',
-        # 'HOST': 'www.dbserver.com'
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'myblogdb',
+        'USER': 'root',
+        'PASSWORD': 'picanoc1119',
+        'HOST': 'localhost',
     }
 }
 
