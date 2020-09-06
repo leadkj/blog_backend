@@ -148,8 +148,7 @@ def sendmsg(request):
 @require_websocket
 def push_attack_log(request):
     if request.is_websocket():
-        print('abcd')
-        cmd = "/usr/bin/tailf %s |grep -v api|awk '{print $1,$4,$6,$7}'" %nginx_log
+        cmd = "/usr/bin/tailf %s" %nginx_log
         popen = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
         while 1:
             # if request.websocket.wait():

@@ -1,2 +1,2 @@
 
-nginx_log='/var/log/nginx/access.log'
+nginx_log='/var/log/nginx/attack.log'
