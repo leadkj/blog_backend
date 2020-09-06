@@ -36,4 +36,4 @@ router.register('categorys',views.CategoryModelViewSets,basename='categorys')
 urlpatterns += router.urls
 
 # 测试
-print(urlpatterns)
+# print(urlpatterns)
