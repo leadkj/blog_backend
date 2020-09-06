@@ -1,3 +1,5 @@
+import subprocess
+
 from django.http import HttpResponse
 from django.shortcuts import render
 from dwebsocket.websocket import WebSocket
@@ -15,7 +17,7 @@ from dwebsocket import require_websocket
 from .filters import ArticleFilters
 from .models import Article, Category, Tag
 from .serializers import ArticleModelSerializer, CategoryModelSerializer, TagModelSerializer
-
+from utils import nginx_log
 clients = {}
 
 
@@ -139,3 +141,17 @@ def sendmsg(request):
         data = {'id': '__--__', 'data': msg}
         clients[client].send(json.dumps(data))
     return HttpResponse("ok")
+
+
+#nginx 访问日志推送
+@require_websocket
+def push_attack_log(request):
+    if request.is_websocket():
+        cmd = '/usr/bin/tailf %s' %nginx_log
+        popen = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
+        while 1:
+            line = popen.stdout.readline()
+            if line:
+                request.websocket.send(line)
+
+
