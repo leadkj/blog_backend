@@ -59,11 +59,24 @@ class ArticleModelViewSets(ModelViewSet):
         # author = UserInfo.objects.get(id=request.data.pop('author'))
         # category = Category.objects.get(id=request.data.pop('category'))
         #关于外键，前端传过来的是外键id，不用使用对象传参，直接使用外键下划线id,传id
-        tags = [Tag.objects.get(id=i) for i  in request.data.pop('tag')]
+        tags = request.data.pop('tag')
         article = Article.objects.create(author_id=request.data.pop('author'),category_id=request.data.pop("category"),**request.data)
-        for tag in tags:
-            article.tag.add(tag)
+        article.tag.add(*tags)
+        article.save()
         serializer = self.get_serializer(instance=article)
+        return Response(serializer.data)
+
+    # overwrite update
+    def update(self, request, *args, **kwargs):
+        # tags = [Tag.objects.get(id=i) for i in request.data.pop('tag')]
+        tags = request.data.pop('tag')
+        instance = Article.objects.get(id=request.data.pop("id"))
+        instance.__dict__.update(author_id=request.data.pop('author'),
+                                         category_id=request.data.pop("category"), **request.data)
+        instance.tag.clear()
+        instance.tag.add(*tags)
+        instance.save()
+        serializer = self.get_serializer(instance=instance)
         return Response(serializer.data)
 
 
