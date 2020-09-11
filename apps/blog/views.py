@@ -87,7 +87,7 @@ class ArticleModelViewSets(ModelViewSet):
         if self.action == 'list' or self.action == 'retrieve':
             permission_classes = [AllowAny]
         else:
-            permission_classes = [AllowAny]
+            permission_classes = [IsAuthenticated]
         return [permission() for permission in permission_classes]
     # 自定义数据请求 ，比如获取阅读量大于10的文章
     @action(methods=['GET'], detail=False)  # 该方法支持get请求，并且没有参数
@@ -102,7 +102,7 @@ class ArticleModelViewSets(ModelViewSet):
         return Response(serializer.data)
 
     #更新是否为原创文章
-    @action(methods=['PUT'],detail=True,permission_classes=[AllowAny])
+    @action(methods=['PUT'],detail=True)
     def ChangeOriginal(self,request,pk):
         article = self.get_object()
         # article.original = not article.original
@@ -115,7 +115,7 @@ class ArticleModelViewSets(ModelViewSet):
         return Response({"message":"修改成功","status":200})
 
     # 自定义put方法，修改点赞个数为1000
-    @action(methods=['PUT'], detail=True,)  # 该方法支持PUT请求，默认有参数
+    @action(methods=['PUT'], detail=True,permission_classes=[AllowAny])  # 该方法支持PUT请求，默认有参数
     def updateLike(self, request, pk):
         # 获取文章对象
         # article = Article.objects.get(pk=pk)
@@ -135,7 +135,7 @@ class ArticleModelViewSets(ModelViewSet):
         return Response(ldata, status=201)
 
     # 自定义put方法，修改阅读量为1000
-    @action(methods=['PUT'], detail=True)  # 该方法支持PUT请求，默认有参数
+    @action(methods=['PUT'], detail=True,permission_classes=[AllowAny])  # 该方法支持PUT请求，默认有参数
     def updateRead(self, request, pk):
         # 获取文章对象
         # article = Article.objects.get(pk=pk)

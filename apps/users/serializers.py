@@ -17,4 +17,4 @@ class UserInfoModelSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserInfo  # 绑定模型类
         # fields = "__all__" #默认列出所有字段
-        fields = ['id', 'username', 'nick_name']
+        fields = ['id', 'username', 'nick_name','gender','is_active','email','is_staff']

@@ -9,7 +9,7 @@ class UserInfo(AbstractUser):
 
     '''
     nick_name = models.CharField(max_length=20, verbose_name='昵称', default='小脑斧')
-    gender = models.CharField(choices=(('male', '男'), ('female', '女')), max_length=5, default='female',
+    gender = models.CharField(choices=(('male', '男'), ('female', '女')), max_length=10, default='female',
                               verbose_name='性别')
     brithday = models.DateField(verbose_name='生日', default='1900-01-01')
     headimg = models.ImageField(upload_to='image/%Y/%m', default='image/default.png', verbose_name='头像')
