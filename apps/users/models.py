@@ -13,7 +13,6 @@ class UserInfo(AbstractUser):
                               verbose_name='性别')
     brithday = models.DateField(verbose_name='生日', default='1900-01-01')
     headimg = models.ImageField(upload_to='image/%Y/%m', default='image/default.png', verbose_name='头像')
-
     class Meta:
         verbose_name = '用户'
         verbose_name_plural = verbose_name

@@ -11,11 +11,12 @@ from blog import views
 urlpatterns = [
     path('send_once/',views.once_echo),
     path('sendmsg/',views.sendmsg),
-    path('push_attack_log/',views.push_attack_log)
+    path('push_attack_log/',views.push_attack_log),
     # path('article/gt/', views.ArticleModelViewSets.as_view({'get': 'readGten'})),
     # # path('api/v1/article/<pk>/',views.ArticleModelViewSets.as_view({'put':'updateLike'})),
     # # # ReadOnlyModelViewSet
     # # path(r'api/v1/article/', blogViews.ArticleModelViewSets.as_view({'get': 'list'})),
+
     # # path('api/v1/article/<pk>/', blogViews.ArticleModelViewSets.as_view({'get': 'retrieve'})),
     #
     # # ModelViewSet
@@ -36,4 +37,4 @@ router.register('categorys',views.CategoryModelViewSets,basename='categorys')
 urlpatterns += router.urls
 
 # 测试
-# print(urlpatterns)
+print(urlpatterns)
