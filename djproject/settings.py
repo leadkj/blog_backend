@@ -103,7 +103,7 @@ DATABASES = {
         'NAME': 'myblogdb',
         'USER': 'root',
         'PASSWORD': 'picanoc1119',
-        'HOST': 'localhost',
+        'HOST': '192.168.10.100',
     }
 }
 
