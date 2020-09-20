@@ -12,7 +12,7 @@ from users.models import UserInfo
 # 博文分类
 class Category(models.Model):
     name = models.CharField(max_length=20, verbose_name='文章类别')
-    desc = models.CharField(max_length=50, verbose_name='类别描述')
+    desc = models.CharField(max_length=50, verbose_name='类别描述', null=True, blank=True)
     ctime = models.DateTimeField(verbose_name='创建时间', default=datetime.now)
 
     class Meta:
@@ -28,7 +28,7 @@ class Article(models.Model):
     博文
     '''
     name = models.CharField(max_length=20, verbose_name='文章名称')
-    desc = models.CharField(max_length=30, verbose_name='描述')
+    desc = models.CharField(max_length=30, verbose_name='描述' , null=True, blank=True)
     publish = models.DateField(verbose_name='出版时间')
     content = RichTextUploadingField(verbose_name='文章内容')
     read = models.IntegerField(verbose_name='浏览量',default=0)

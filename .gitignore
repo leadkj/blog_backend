@@ -3,6 +3,7 @@ node_modules
 /dist
 __pycache__
 migrations
+/media/*
 
 # local env files
 .env.local
