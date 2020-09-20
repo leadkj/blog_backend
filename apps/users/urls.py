@@ -24,4 +24,4 @@ router.register('users', views.UserModelViewSet, basename='users')  # users æ˜¯è
 urlpatterns += router.urls
 
 
-print(urlpatterns)
+# print(urlpatterns)

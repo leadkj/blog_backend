@@ -10,21 +10,21 @@ from .serializers import UserInfoModelSerializer
 
 
 class UserModelViewSet(ModelViewSet):
-    # permission_classes = [AllowAny]
+    permission_classes = [IsAuthenticated]
     queryset = UserInfo.objects.all()
     serializer_class = UserInfoModelSerializer
 
     filterset_fields = ['username','nick_name']
     pagination_class = StandardResultsSetPagination
-    def get_permissions(self):
-        """
-        Instantiates and returns the list of permissions that this view requires.
-        """
-        if self.action == 'list' or self.action == 'retrieve':
-            permission_classes = [AllowAny]
-        else:
-            permission_classes = [IsAuthenticated]
-        return [permission() for permission in permission_classes]
+    # def get_permissions(self):
+    #     """
+    #     Instantiates and returns the list of permissions that this view requires.
+    #     """
+    #     if self.action == 'list' or self.action == 'retrieve':
+    #         permission_classes = [AllowAny]
+    #     else:
+    #         permission_classes = [IsAuthenticated]
+    #     return [permission() for permission in permission_classes]
 
     @action(methods=['PUT'],detail=True)
     def modifyPass(self,request,pk):
