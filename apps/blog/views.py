@@ -161,7 +161,10 @@ class ArticleModelViewSets(ModelViewSet):
     def imageUpload(self,request):
         fileobj = request.FILES.get('image')
         filename = str(int(time.time()))+'.'+fileobj.name.split(".")[1]
-        filepath = os.path.join(BASE_DIR,'media',str(datetime.now().year),str(datetime.now().month),filename)
+        fileSavedir = os.path.join(BASE_DIR,'media',str(datetime.now().year),str(datetime.now().month))
+        if not os.path.isdir(fileSavedir):
+            os.makedirs(fileSavedir)
+        filepath = os.path.join(fileSavedir,filename)
         with open(filepath,'wb') as img:
             for chunk in fileobj.chunks():
                 img.write(chunk)
