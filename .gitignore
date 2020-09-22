@@ -4,11 +4,10 @@ node_modules
 __pycache__
 migrations
 /media/*
-utils/config.py
+config.py
 # local env files
 .env.local
 .env.*.local
-settings.py
 # Log files
 npm-debug.log*
 yarn-debug.log*
