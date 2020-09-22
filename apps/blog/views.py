@@ -27,7 +27,7 @@ clients = {}
 
 
 # 文章类视图
-class ArticleModelViewSets(CacheResponseMixin, ModelViewSet):
+class ArticleModelViewSets(ModelViewSet):
     '''文章类试图
       如果只是前端使用前后端分离方式开发，最好使用ReadOnlyModelViewSet ，我这里后台管理是xadmin,后端不是前后端分离技术
     '''
