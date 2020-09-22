@@ -3,10 +3,6 @@ import time
 from datetime import datetime
 import os
 from django.http import HttpResponse
-from django.shortcuts import render
-from dwebsocket.websocket import WebSocket
-from rest_framework.filters import OrderingFilter
-from rest_framework.generics import get_object_or_404
 import json
 import uuid
 
@@ -17,15 +13,12 @@ from rest_framework.decorators import action, permission_classes  # 给自定义
 from rest_framework_extensions.cache.mixins import CacheResponseMixin
 from dwebsocket import require_websocket
 
-from users.models import UserInfo
 from utils.Pagination import StandardResultsSetPagination
 from .filters import ArticleFilters
 from .models import Article, Category, Tag
 from .serializers import ArticleModelSerializer, CategoryModelSerializer, TagModelSerializer
 from utils import nginx_log
 from djproject.settings import MEDIA_URL, BASE_DIR
-
-# from rest_framework_simplejwt.authentication import JWTAuthentication
 
 clients = {}
 
@@ -34,7 +27,7 @@ clients = {}
 
 
 # 文章类视图
-class ArticleModelViewSets(ModelViewSet):
+class ArticleModelViewSets(CacheResponseMixin, ModelViewSet):
     '''文章类试图
       如果只是前端使用前后端分离方式开发，最好使用ReadOnlyModelViewSet ，我这里后台管理是xadmin,后端不是前后端分离技术
     '''
@@ -201,12 +194,10 @@ class CategoryModelViewSets(ModelViewSet):
 class TagModelViewSets(ModelViewSet):
     '''标签类视图
     '''
-
     queryset = Tag.objects.all()
     serializer_class = TagModelSerializer
     # 自定义分页
     pagination_class = StandardResultsSetPagination
-
     filterset_fields = ['name']
 
     def get_permissions(self):

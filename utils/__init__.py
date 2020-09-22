@@ -1,2 +1,3 @@
 
-nginx_log='/var/log/nginx/attack.log'
+nginx_log = '/var/log/nginx/attack.log'
+

@@ -1,9 +1,8 @@
 from datetime import datetime
 
 from django.db import models
-from ckeditor.fields import RichTextField
+# from ckeditor.fields import RichTextField
 from ckeditor_uploader.fields import RichTextUploadingField
-
 from users.models import UserInfo
 
 
@@ -28,11 +27,11 @@ class Article(models.Model):
     博文
     '''
     name = models.CharField(max_length=20, verbose_name='文章名称')
-    desc = models.CharField(max_length=30, verbose_name='描述' , null=True, blank=True)
+    desc = models.CharField(max_length=30, verbose_name='描述', null=True, blank=True)
     publish = models.DateField(verbose_name='出版时间')
     content = RichTextUploadingField(verbose_name='文章内容')
-    read = models.IntegerField(verbose_name='浏览量',default=0)
-    like = models.IntegerField(verbose_name="点赞",default=0)
+    read = models.IntegerField(verbose_name='浏览量', default=0)
+    like = models.IntegerField(verbose_name="点赞", default=0)
     original = models.BooleanField(verbose_name="是否原创")
     author = models.ForeignKey(UserInfo, verbose_name='作者', null=True, blank=True, on_delete=models.SET_NULL)
     category = models.ForeignKey(Category, verbose_name='文章分类', null=True, blank=True, on_delete=models.SET_NULL)
@@ -59,7 +58,7 @@ class Tag(models.Model):
     class Meta:
         verbose_name = '标签'
         verbose_name_plural = verbose_name
-        ordering=['name']
+        ordering = ['name']
 
     def __str__(self):
         return self.name
