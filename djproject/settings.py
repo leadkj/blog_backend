@@ -14,6 +14,7 @@ import os
 import sys
 from datetime import timedelta
 import pymysql
+from utils import config
 pymysql.install_as_MySQLdb()
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -30,7 +31,6 @@ SECRET_KEY = 'c(qew^^w**&5li^(64)*p0j(c)nu8og@sjy4&im*pvi&4%^m9b'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
 
 ALLOWED_HOSTS = []
 
@@ -100,10 +100,10 @@ WSGI_APPLICATION = 'djproject.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'myblogdb',
-        'USER': 'root',
-        'PASSWORD': 'picanoc1119',
-        'HOST': '192.168.10.100',
+        'NAME': config.MySQL_DB,
+        'USER': config.MySQL_USER,
+        'PASSWORD': config.MySQL_PASS,
+        'HOST': config.MySQL_HOST,
     }
 }
 
@@ -144,7 +144,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = 'static'
 STATICFILES_DIRS = [
-  os.path.join(BASE_DIR, '/static/'), ##修改地方
+    os.path.join(BASE_DIR, '/static/'),  ##修改地方
 ]
 
 MEDIA_URL = '/media/'
@@ -165,57 +165,53 @@ CKEDITOR_CONFIGS = {
 
 }
 
-
-#DRF相关配置信息
+# DRF相关配置信息
 REST_FRAMEWORK = {
-    #由于api只针对前台展示，所以就不做验证了
+    # 由于api只针对前台展示，所以就不做验证了
     'DEFAULT_AUTHENTICATION_CLASSES': [
-            # 'rest_framework.authentication.BasicAuthentication',
-            # 'rest_framework.authentication.SessionAuthentication',
-            'rest_framework_simplejwt.authentication.JWTAuthentication',
+        # 'rest_framework.authentication.BasicAuthentication',
+        # 'rest_framework.authentication.SessionAuthentication',
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
     'DEFAULT_PERMISSION_CLASSES': [
-        #'rest_framework.permissions.IsAuthenticated',
+        # 'rest_framework.permissions.IsAuthenticated',
     ],
-
 
     # api限流
     'DEFAULT_THROTTLE_CLASSES': [
-        'rest_framework.throttling.AnonRateThrottle', #对匿名用户限流
-        'rest_framework.throttling.UserRateThrottle'  #对认证的用户限流
+        'rest_framework.throttling.AnonRateThrottle',  # 对匿名用户限流
+        'rest_framework.throttling.UserRateThrottle'  # 对认证的用户限流
     ],
     'DEFAULT_THROTTLE_RATES': {
-        'anon': '10000/day', #匿名用户一天之内访问100次
-        'user': '1000000/day' #认证用户一天访问1000次
+        'anon': '10000/day',  # 匿名用户一天之内访问100次
+        'user': '1000000/day'  # 认证用户一天访问1000次
     },
 
-    #'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',  #?limit=1&offset=1
-    #'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',  #?page=1&page_size=2
-    #'PAGE_SIZE': 6,  #默认设置，通过url中page_size 无法修改，想要修改需要继承PageNumberPagination 这个类，重写其中的属性
+    # 'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',  #?limit=1&offset=1
+    # 'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',  #?page=1&page_size=2
+    # 'PAGE_SIZE': 6,  #默认设置，通过url中page_size 无法修改，想要修改需要继承PageNumberPagination 这个类，重写其中的属性
 
-    #过滤器配置
+    # 过滤器配置
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
     'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
 }
 
 ###drf缓存扩展
 REST_FRAMEWORK_EXTENSIONS = {
-    'DEFAULT_CACHE_RESPONSE_TIMEOUT': 100  #配置缓存过期时间10s
+    'DEFAULT_CACHE_RESPONSE_TIMEOUT': 100  # 配置缓存过期时间10s
 }
 
 # CACHES = {
 #     "default": {
 #         "BACKEND": "django_redis.cache.RedisCache",
-#         "LOCATION": "redis://192.168.10.100:6379",
+#         "LOCATION": "redis://"+config.Redis_HOST+":6379",
 #         "OPTIONS": {
 #             "CLIENT_CLASS": "django_redis.client.DefaultClient",
 #         }
 #     }
 # }
 
-
-
-#JWT session 认证
+# JWT session 认证
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(days=5),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
@@ -241,4 +237,3 @@ SIMPLE_JWT = {
     'SLIDING_TOKEN_LIFETIME': timedelta(minutes=5),
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
 }
-

@@ -4,7 +4,7 @@ node_modules
 __pycache__
 migrations
 /media/*
-
+utils/config.py
 # local env files
 .env.local
 .env.*.local

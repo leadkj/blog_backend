@@ -1,0 +1,8 @@
+MySQL_HOST='192.168.10.100'
+MySQL_USER='root'
+MySQL_PASS='picanoc1119'
+MySQL_PORT=3306
+MySQL_DB='myblogdb'
+
+
+Redis_HOST='127.0.0.1'
