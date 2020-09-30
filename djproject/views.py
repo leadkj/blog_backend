@@ -32,7 +32,7 @@ class MenuList(APIView):
                 mtmp = {}
                 mtmp['id'] = j
                 mtmp['name'] = models[j-1]._meta.verbose_name
-                mtmp['path'] = models[j-1].__name__
+                mtmp['path'] = models[j-1].__url__
                 tmp['submenus'].append(mtmp)
             meunlist.append(tmp)
         return Response({"data":meunlist,"status":200})

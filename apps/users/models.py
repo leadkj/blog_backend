@@ -8,6 +8,7 @@ class UserInfo(AbstractUser):
     '''Userinfo Molde
 
     '''
+    __url__ = 'user'
     nick_name = models.CharField(max_length=20, verbose_name='昵称', default='小脑斧')
     gender = models.CharField(choices=(('male', '男'), ('female', '女')), max_length=10, default='female',
                               verbose_name='性别')

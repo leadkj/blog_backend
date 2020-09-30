@@ -53,10 +53,13 @@ INSTALLED_APPS = [
     'rest_framework',
     'django_filters',
     'corsheaders',
+    'channels',
 
     # 自定义apps
     'users',
     'blog',
+    'jenkinsapp',
+    'assets'
 ]
 
 MIDDLEWARE = [
@@ -93,6 +96,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'djproject.wsgi.application'
+ASGI_APPLICATION = 'djproject.routing.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases

@@ -36,6 +36,7 @@ urlpatterns = [
     path('ckeditor/', include('ckeditor_uploader.urls')),
     path('api/v1/', include('blog.urls')),
     path('api/v1/', include('users.urls')),
+    path('api/v1/', include('jenkinsapp.urls')),
     path('api/v1/get_menu/',views.MenuList.as_view()),
     # path('^api-auth/', include('rest_framework.urls')),
     path('api/v1/tauth/', TokenObtainPairView.as_view(), name='token_obtain_pair'),

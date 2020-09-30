@@ -10,6 +10,7 @@ from users.models import UserInfo
 
 # 博文分类
 class Category(models.Model):
+    __url__ = 'category'
     name = models.CharField(max_length=20, verbose_name='文章类别')
     desc = models.CharField(max_length=50, verbose_name='类别描述', null=True, blank=True)
     ctime = models.DateTimeField(verbose_name='创建时间', default=datetime.now)
@@ -26,6 +27,7 @@ class Article(models.Model):
     '''
     博文
     '''
+    __url__ = 'article'
     name = models.CharField(max_length=20, verbose_name='文章名称')
     desc = models.CharField(max_length=30, verbose_name='描述', null=True, blank=True)
     publish = models.DateField(verbose_name='出版时间')
@@ -51,6 +53,7 @@ class Tag(models.Model):
     '''
     标签
     '''
+    __url__ = 'tag'
     name = models.CharField(max_length=20, verbose_name="标签名称")
 
     # article = models.ForeignKey(Article,verbose_name="文章",on_delete=models.CASCADE)
