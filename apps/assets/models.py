@@ -8,6 +8,8 @@ class Instance(models.Model):
     hostname = models.CharField(max_length=20,verbose_name='主机名称')
     ipaddr = models.CharField(max_length=15,verbose_name='IP地址')
     status = models.BooleanField(verbose_name='是否停用',default=True)
+    origin = models.CharField(max_length=11,verbose_name='主机来源',default='其他')
+    group = models.CharField(max_length=11,verbose_name='主机组',default='默认')
 
 
     class Meta:
