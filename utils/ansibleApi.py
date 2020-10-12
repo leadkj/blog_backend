@@ -99,7 +99,7 @@ class AnsibleApi(object):
         return results_raw
 
     def playbookrun(self, playbook_path, host_list):#host_list 是一个列表，列表中可以是主机，也可以是组名
-        self.variable_manager.extra_vars.update({'host': host_list})
+        self.variable_manager.extra_vars.update({'hosts': host_list})
 
 
         playbook = PlaybookExecutor(playbooks=playbook_path,
