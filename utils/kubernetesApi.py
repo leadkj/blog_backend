@@ -1,11 +1,10 @@
 
 from kubernetes import config ,client
-import kubernetes
 # from app.config import K8S_TOKEN,K8S_APISERVER
 
 K8S_TOKEN = 'eyJhbGciOiJSUzI1NiIsImtpZCI6ImlBZWwxUU5zVkhMMHg2TGs2NXZ4SHZmbXp2NHFOOUJ5TVRLWVEyalFNa2MifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJrdWJlLXN5c3RlbSIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VjcmV0Lm5hbWUiOiJhZG1pbi10b2tlbi05anFwcSIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50Lm5hbWUiOiJhZG1pbiIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50LnVpZCI6Ijc5NjY2ZDRhLWQ3YWUtNDVhMC04ZGMyLWVkY2FlMDVhZmY2MCIsInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3VudDprdWJlLXN5c3RlbTphZG1pbiJ9.gbUrxp8EwCqFtXywQjZcko8lw_sePRqPY9dfcA12Ro-AVZ8V92wXn4-AsH-WeFlG3JqkhNPMmY4EtRuRv2Pb93gFJoOi4gAogEYMwNyy_CWBI8zSOEa2py0d8oF6gtZsIdCXVMuPFYYce1Kpx-pDmP4A6MjnOki9v9DvgupQwzP-XParyeaB65FeP-JW04UVhBFxNp2ShBH6_cxH_Qy06u2Y5AkEABYct3XBnV14Z15SJZkPiz8oueCseZLWIEYDil9D5syKJrpGymJhz8gEBzy2bOtqDdD4y6ZAUGeH2hj5g4WX27dutUhpCyf0zf8JoREqUCisfNRqLH3_X4opVA'
 K8S_APISERVER = 'https://192.168.128.110:8443'
-
+#config.kube_config.load_kube_config(config_file='adm')
 
 class K8SAPI():
     def __init__(self,k8s_token,k8s_apiserver):
@@ -16,7 +15,7 @@ class K8SAPI():
         # self.configuration.ssl_ca_cert = 'ca.crt'
         self.configuration.api_key = {"authorization": "Bearer " + K8S_TOKEN}
         # self.configuration.assert_hostname = "k8s-master.novalocal"
-        self.client.Configuration.set_default(self.configuration)
+        client.Configuration.set_default(self.configuration)
         self.App = client.AppsV1Api()  # 获取namespaced_daemon_set，namespaced_deployment_set,namespaced_stateful_set,namespaced_replica_set
         self.Core = client.CoreV1Api()  # 获取namespace,node,PV,namespace_pod,namespace_service,namespace_config_map,namespace_secret,namespace_pvc,namespaced_replication_controller
         self.Rbac = client.RbacAuthorizationV1Api()  # 获取cluster_role
